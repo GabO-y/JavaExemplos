@@ -45,10 +45,10 @@
 - [x] Pattern matching (instanceof, switch)
 
 ## 8. Comandos de Repetição
-- [ ] `for` tradicional
-- [ ] `for-each` (enhanced for)
-- [ ] `while`
-- [ ] `do-while`
+- [x] `for` tradicional
+- [x] `for-each` (enhanced for)
+- [x] `while`
+- [x] `do-while`
 
 ## 9. Subprogramas
 - [ ] **Declaração e chamada** de métodos
