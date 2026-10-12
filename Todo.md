@@ -34,9 +34,9 @@
 - [x] **Sobrecarga de operadores** (Java não suporta sobrecarga de operadores definida pelo usuário, exceto `+` para String)
 
 ## 6. Estruturas de Controle e Desvios de Fluxo
-- [ ] `break`, `continue`, `return`
-- [ ] `break`/`continue` rotulados
-- [ ] `yield` (switch expressions)
+- [x] `break`, `continue`, `return`
+- [x] `break`/`continue` rotulados
+- [x] `yield` (switch expressions)
 
 ## 7. Comandos Condicionais
 - [ ] `if` / `else if` / `else`
