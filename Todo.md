@@ -1,0 +1,94 @@
+# Checklist de Análise da Linguagem Java
+
+## 1. Tipos de Dados
+- [ ] **Tipos primitivos** (byte, short, int, long, float, double, char, boolean)
+  - [ ] Tamanho em bits/bytes de cada tipo
+  - [ ] Representação (ponto fixo vs. ponto flutuante)
+  - [ ] Valores padrão
+- [ ] **Tipos compostos/referência** (classes, interfaces, arrays, enums, records)
+  - [ ] Formato de implementação (heap, vetores estáticos vs. dinâmicos)
+  - [ ] Tipos permitidos para índices de arrays
+- [ ] **Tipos básicos padrão da linguagem** (String, wrappers, Object, etc.)
+- [ ] **Conversões** (implícitas, explícitas/casting, boxing/unboxing)
+
+## 2. Ponteiros e Referências
+- [ ] Java usa referências (não ponteiros explícitos)
+- [ ] Gerenciamento de memória (Garbage Collector)
+- [ ] Sem aritmética de ponteiros
+- [ ] Referências nulas (null)
+
+## 3. Palavras-Chave e Reservadas
+- [ ] Listar palavras-chave (abstract, final, static, synchronized, volatile, transient, etc.)
+- [ ] Palavras reservadas mas não usadas (goto, const)
+- [ ] Literais especiais (true, false, null)
+
+## 4. Variáveis
+- [ ] **Nomes**: case sensitive, caracteres permitidos (letras, dígitos, `_`, `$`), convenções
+- [ ] **Vinculação**: estática (tipagem forte e estática)
+- [ ] **Tempo de vida**: local (stack), instância/objeto (heap), estática (class load)
+- [ ] **Escopo**: bloco, método, classe, pacote
+
+## 5. Expressões
+- [ ] **Associatividade** (esquerda/direita)
+- [ ] **Precedência** de operadores
+- [ ] **Sobrecarga de operadores** (Java não suporta sobrecarga de operadores definida pelo usuário, exceto `+` para String)
+
+## 6. Estruturas de Controle e Desvios de Fluxo
+- [ ] `break`, `continue`, `return`
+- [ ] `break`/`continue` rotulados
+- [ ] `yield` (switch expressions)
+
+## 7. Comandos Condicionais
+- [ ] `if` / `else if` / `else`
+- [ ] `switch` (tradicional e expressão)
+- [ ] Operador ternário
+- [ ] Pattern matching (instanceof, switch)
+
+## 8. Comandos de Repetição
+- [ ] `for` tradicional
+- [ ] `for-each` (enhanced for)
+- [ ] `while`
+- [ ] `do-while`
+
+## 9. Subprogramas
+- [ ] **Declaração e chamada** de métodos
+- [ ] **Modificadores** (public, private, protected, static, final, abstract)
+- [ ] **Passagem de parâmetros**: apenas por valor (objetos passam referência por valor)
+- [ ] **Sobrecarga** e **sobrescrita** de métodos
+- [ ] **Co-rotinas**: não suportadas nativamente (alternativas com threads/virtual threads)
+- [ ] **Funções lambda** (a partir do Java 8)
+- [ ] **Programação genérica** (Generics)
+- [ ] **Métodos delegados** (via composição, não nativo)
+
+## 10. Concorrência
+- [ ] **Threads** (Thread, Runnable)
+- [ ] **Executors / Thread Pools**
+- [ ] **Sincronização**: `synchronized`, `Lock`, `Semaphore`, `Atomic*`
+- [ ] **CompletableFuture** (programação assíncrona)
+- [ ] **Virtual Threads** (Java 21+)
+- [ ] **Coleções concorrentes** (ConcurrentHashMap, etc.)
+- [ ] **Memória compartilhada** e `volatile`
+
+## 11. Tratamento de Exceções
+- [ ] **Checked exceptions** (verificadas em compilação)
+- [ ] **Unchecked exceptions** (RuntimeException e Error)
+- [ ] **Erros tratáveis vs. intratáveis** (Error vs. Exception)
+- [ ] **Criação de exceções personalizadas**
+- [ ] **Blocos** `try`, `catch`, `finally`
+- [ ] **try-with-resources**
+- [ ] **Delegação** (`throws`)
+- [ ] **Multi-catch**
+
+## 12. Tratamento de Eventos
+- [ ] **Modelo de eventos** (Listener/Observer)
+- [ ] **Eventos de GUI** (AWT/Swing/JavaFX)
+- [ ] **Interfaces funcionais** para callbacks
+- [ ] **Eventos em programação reativa** (Flow API, Reactive Streams)
+
+## 13. Paradigmas e Aspectos Adicionais
+- [ ] **Paradigma orientado a objetos** (classes, herança, polimorfismo, encapsulamento)
+- [ ] **Paradigma funcional** (lambdas, Streams, Optional)
+- [ ] **Metaprogramação** (Reflection, Annotations, APT)
+- [ ] **Programação paralela** (Fork/Join, Parallel Streams)
+- [ ] **Programação distribuída** (RMI, sockets, bibliotecas externas)
+- [ ] **Modularização** (JPMS - Java Platform Module System)
