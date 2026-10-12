@@ -1,12 +1,6 @@
 /**
  * Exemplo 03 - Palavras-Chave e Reservadas
  *
- * Cobre (Todo.md #3):
- * - [x] Listar palavras-chave (abstract, final, static, synchronized, volatile, transient, etc.)
- * - [x] Mostrar exemplos de uso das principais palavras-chave
- * - [x] Palavras reservadas mas nao usadas (goto, const)
- * - [x] Literais especiais (true, false, null)
- *
  * Exemplo aplicado: um pequeno sistema de estoque que usa muitas palavras-chave
  * na pratica, seguido da listagem completa das palavras reservadas do Java.
  */
