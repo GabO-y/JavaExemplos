@@ -39,10 +39,10 @@
 - [x] `yield` (switch expressions)
 
 ## 7. Comandos Condicionais
-- [ ] `if` / `else if` / `else`
-- [ ] `switch` (tradicional e expressão)
-- [ ] Operador ternário
-- [ ] Pattern matching (instanceof, switch)
+- [x] `if` / `else if` / `else`
+- [x] `switch` (tradicional e expressão)
+- [x] Operador ternário
+- [x] Pattern matching (instanceof, switch)
 
 ## 8. Comandos de Repetição
 - [ ] `for` tradicional
