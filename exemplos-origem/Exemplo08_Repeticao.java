@@ -1,3 +1,5 @@
+import static java.lang.IO.println;
+
 /**
  * Exemplo 08 - Comandos de Repeticao
  *
@@ -7,8 +9,44 @@
  * - [x] while
  * - [x] do-while
  *
- * Exemplo aplicado: treino de uma maratona organizado em voltas na pista,
- * usando os quatro lacos do Java para diferentes cenarioes.
+ * ------------------------------------------------------------------
+ * NOTAS SOBRE AS FEATURES DEMONSTRADAS:
+ * ------------------------------------------------------------------
+ *
+ * 1) `for` tradicional
+ *    - Forma: for (inicializacao; condicao; incremento) { corpo }
+ *    - A inicializacao roda UMA vez antes do laco.
+ *    - A condicao e checada ANTES de cada iteracao (pre-teste).
+ *    - O incremento roda ao FINAL de cada iteracao.
+ *    - Ideal quando se sabe o numero de iteracoes ou precisa do indice.
+ *
+ * 2) `for-each` (enhanced for)
+ *    - Forma: for (Tipo var : colecaoOuArray) { corpo }
+ *    - Percorre TODOS os elementos, sem indice.
+ *    - Funciona com arrays e qualquer coisa que implemente Iterable<T>.
+ *    - Mais limpo, mas nao permite pular ou acessar indice diretamente.
+ *
+ * 3) `while`
+ *    - Forma: while (condicao) { corpo }
+ *    - Pre-teste: a condicao e avaliada ANTES de entrar no corpo.
+ *    - Se a condicao ja for falsa, o corpo NUNCA executa.
+ *    - Ideal quando o numero de iteracoes e desconhecido.
+ *
+ * 4) `do-while`
+ *    - Forma: do { corpo } while (condicao);
+ *    - Pos-teste: o corpo roda AO MENOS UMA VEZ, depois a condicao e checada.
+ *    - ⚠️ O `;` apos o `while (...)` e OBRIGATORIO.
+ *    - Uso tipico: menus, validacao de entrada, loop que precisa rodar pelo
+ *      menos uma vez.
+ *
+ * 5) break / continue dentro dos lacos
+ *    - `break`    => sai imediatamente do laco.
+ *    - `continue` => pula para a proxima iteracao.
+ *    - (Ver Exemplo06_ControleDeFluxo para rotulos e yield.)
+ *
+ * 6) ⚠️ CUIDADO COM LOOP INFINITO
+ *    - while(true)  /  for(;;)  => loop infinito intencional (use break).
+ *    - Se esquecer de atualizar a variavel de controle, o laco nunca termina.
  */
 
 import java.util.List;
@@ -17,107 +55,106 @@ import java.util.Map;
 public class Exemplo08_Repeticao {
 
     public static void main(String[] args) {
-        System.out.println("=== for TRADICIONAL (contagem por indice) ===");
 
-        // Conta de 1 a 5 com passo +1.
-        for (int volta = 1; volta <= 5; volta++) {
-            System.out.print(volta + " ");
-        }
-        System.out.println();
+        // -----------------------------------------------------------------
+        // Acumulador compartilhado entre os 4 lacos.
+        // Cada laco altera ele, e o proximo laco parte do resultado anterior.
+        // -----------------------------------------------------------------
+        Integer acumulator = 0;
 
-        // Passo negativo (decremento) para contagem regressiva.
-        for (int i = 5; i >= 1; i--) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
+        System.out.println("==================================================");
+        System.out.println(" EXEMPLO 08 - COMANDOS DE REPETICAO");
+        System.out.println("==================================================");
+        System.out.println("acumulator inicial = " + acumulator + "\n");
 
-        // Passo arbitrário: apenas voltas impares.
-        for (int v = 1; v <= 10; v += 2) {
-            System.out.print(v + " ");
-        }
-        System.out.println();
+        // -----------------------------------------------------------------
+        // [1] for tradicional
+        //     Inicializa i=0; enquanto i < 20; incrementa i++.
+        //     Roda 20 vezes, somando 1 ao acumulator a cada iteracao.
+        //     Resultado: acumulator = 20.
+        // -----------------------------------------------------------------
+        System.out.println("[1] for tradicional (20 iteracoes somando +1):");
 
-        // Tres secoes do for: inicialização; condicao; atualizacao.
-        int totalVoltas = 0;
-        for (int v = 0, alvo = 12; v < alvo; v += 3, totalVoltas++) {
-            System.out.println("avanco de 3 em 3: " + v + " (iteracao " + totalVoltas + ")");
+        for (int i = 0; i < 20; i++) {
+            acumulator++;
         }
 
-        System.out.println();
-        System.out.println("=== for-each (ENHANCED FOR / for avançado) ===");
+        System.out.println("  acumulator apos o for = " + acumulator);
 
-        int[] tempos = {42, 39, 45, 40};
-        int soma = 0;
-        for (int tempo : tempos) {               // percorre o array sem indice
-            soma += tempo;
-        }
-        System.out.println("soma dos tempos " + java.util.Arrays.toString(tempos) + " = " + soma);
+        // -----------------------------------------------------------------
+        // [2] for-each
+        //     Percorre o array `values` do inicio ao fim, sem indice.
+        //     Soma cada elemento ao acumulator.
+        //     values = {1,2,3,4,5,6,7,8,9,0} => soma = 45.
+        //     Resultado: acumulator = 20 + 45 = 65.
+        // -----------------------------------------------------------------
+        System.out.println("\n[2] for-each (soma todos os elementos do array):");
 
-        // for-each também funciona com listas, mapas e demais Iterable.
-        List<String> compradores = List.of("Ana", "Bia", "Cadu");
-        for (String nome : compradores) {
-            System.out.println("correndo com: " + nome);
-        }
+        Integer[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
-        Map<String, Integer> patrocinadores = Map.of("Cafe", 3, "Padaria", 2, "Academia", 5);
-        for (Map.Entry<String, Integer> ent : patrocinadores.entrySet()) {
-            System.out.println("patrocinador " + ent.getKey() + " -> " + ent.getValue() + " km");
+        for (Integer i : values) {
+            acumulator += i;
         }
 
-        System.out.println();
-        System.out.println("=== while (condicao no INICIO) ===");
+        System.out.println("  soma do array values = 45");
+        System.out.println("  acumulator apos o for-each = " + acumulator);
 
-        // while avalia a condicao ANTES de cada execucao.
-        int hidratacao = 0;
-        while (hidratacao < 3) {
-            System.out.println("copa de agua " + (hidratacao + 1) + "/3");
-            hidratacao++;
+        // -----------------------------------------------------------------
+        // [3] while (pre-teste)
+        //     Enquanto acumulator < 1000, incrementa +1.
+        //     Para quando acumulator >= 1000.
+        //     Como entra com 65, faz 935 iteracoes ate chegar a 1000.
+        //     Resultado: acumulator = 1000.
+        // -----------------------------------------------------------------
+        System.out.println("\n[3] while (incrementa ate acumulator >= 1000):");
+
+        while (acumulator < 1000 ){
+
+            acumulator++;
         }
 
-        // Pode nem executar nenhuma vez, se a condicao ja for falsa.
-        int distanciaExtra = 10;
-        while (distanciaExtra > 20) {            // nunca executa
-            System.out.println("nunca chega aqui");
-        }
-        System.out.println("while com condicao falsa de inicio: zero execucoes");
+        System.out.println("  acumulator apos o while = " + acumulator);
 
-        // while classico ate achar um valor.
-        int energia = 100;
-        int gasto = 17;
-        while (energia > 0) {
-            System.out.print(energia + " ");
-            energia -= gasto;                    // 100 -> 83 -> 66 -> 49 -> 32 -> 15
-        }
-        System.out.println(" | energia final: " + energia);
+        // -----------------------------------------------------------------
+        // [4] do-while (pos-teste)
+        //     Executa o corpo AO MENOS UMA VEZ, depois checa a condicao.
+        //     Enquanto acumulator < 1600, incrementa +1.
+        //     Como 1000 < 1600, faz 600 iteracoes ate chegar a 1600.
+        //     Resultado final: acumulator = 1600.
+        // -----------------------------------------------------------------
+        System.out.println("\n[4] do-while (incrementa ate acumulator >= 1600):");
 
-        System.out.println();
-        System.out.println("=== do-while (condicao no FINAL) ===");
-
-        // do-while garante pelo menos UMA execucao.
-        int tentativas = 0;
         do {
-            tentativas++;
-            System.out.println("tentativa " + tentativas + " (rodou ao menos 1x)");
-        } while (tentativas < 2);
 
-        // Mesma condicao falsa do while, mas agora executa uma vez.
-        int bacias = 0;
+            acumulator++;
+        } while (acumulator < 1600);
+
+        System.out.println("  acumulator apos o do-while = " + acumulator);
+
+        // -----------------------------------------------------------------
+        // [5] Demonstracao extra (nao altera `acumulator`):
+        //     diferenca entre while (pre-teste) e do-while (pos-teste).
+        //     Aqui a condicao ja nasce FALSA nos dois casos.
+        // -----------------------------------------------------------------
+        System.out.println("\n[5] while vs do-while com condicao FALSA de inicio:");
+
+        int condFalsa = 0;
+
+        // while: condicao falsa => corpo NUNCA roda
+        while (condFalsa > 0) {
+            println("  while  -> executou (nao deveria!)");
+        }
+        System.out.println("  while   -> corpo NAO executou (pre-teste)");
+
+        // do-while: corpo roda UMA vez, depois a condicao falha
         do {
-            System.out.println("do-while com condicao falsa executa 1x (bacia " + bacias + ")");
-            bacias++;
-        } while (bacias > 5);
+            System.out.println("  do-while -> corpo executou UMA vez (pos-teste)");
+        } while (condFalsa > 0);
 
-        System.out.println();
-        System.out.println("=== COMPARANDO OS QUATRO EM UM CENARIO ===");
-
-        // Resumo do treino: distancia total por tipo de laco.
-        int km = 0;
-        for (int lap = 0; lap < 4; lap++) km += 2;          // 8 km (for trad.)
-        for (int x : new int[] {2, 4}) km += x;             // 6 km (for-each)
-        int w = 0;
-        while (w < 3) { km += 2; w++; }                     // 6 km (while)
-        int d = 0;
-        do { km += 1; d++; } while (d < 2);                 // 2 km (do-while)
-        System.out.println("distancia total no treino: " + km + " km");
+        System.out.println("\n==================================================");
+        System.out.println(" acumulator FINAL = " + acumulator);
+        System.out.println("==================================================");
+        System.out.println(" FIM DO EXEMPLO 08");
+        System.out.println("==================================================");
     }
 }

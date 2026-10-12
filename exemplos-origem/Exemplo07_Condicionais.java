@@ -1,172 +1,157 @@
+import static java.lang.IO.println;
+
 /**
  * Exemplo 07 - Comandos Condicionais
  *
- * Exemplo aplicado: bilheteria de um teatro com regras de desconto
- * usando todos os comandos condicionais do Java.
+ * Cobre (Todo.md #7):
+ * - [x] if / else if / else
+ * - [x] switch (tradicional e expressao)
+ * - [x] Operador ternario
+ * - [x] Pattern matching (instanceof, switch)
+ *
+ * ------------------------------------------------------------------
+ * NOTAS SOBRE AS FEATURES DEMONSTRADAS:
+ * ------------------------------------------------------------------
+ *
+ * 1) if / else if / else
+ *    - Estrutura condicional classica.
+ *    - Compara com `==`. ATENCAO: para Strings o correto e usar
+ *      `.equals(...)`, pois `==` compara REFERENCIA, nao conteudo.
+ *      Aqui o exemplo usa `==` de proposito didatico.
+ *
+ * 2) switch tradicional vs switch expression
+ *    - `switch (x) { case ... -> ...; }` e um switch com setas
+ *      (Java 14+), mais enxuto que o `case ...: break;` classico.
+ *    - Quando o switch PRECISA devolver um valor, ele vira uma
+ *      SWITCH EXPRESSION: `var x = switch (v) { ... };`
+ *
+ * 3) Operador ternario
+ *    - `condicao ? valorSeVerdadeiro : valorSeFalso`
+ *    - Atalho para um if/else que devolve valor.
+ *
+ * 4) Pattern matching
+ *    - `instanceof`: alem de testar o tipo, ja cria uma VARIAVEL
+ *      tipada quando o teste e verdadeiro:
+ *          if (obj instanceof String s) { ... s ja e String ... }
+ *    - `switch` pattern (Java 21): cada `case Tipo var ->` testa o
+ *      tipo e ja vincula a variavel.
+ *
+ * 5) `yield`
+ *    - Usado DENTRO de blocos `{ ... }` de uma switch expression para
+ *      devolver o valor daquele case.
  */
 
 public class Exemplo07_Condicionais {
 
-    record Pedido(double valor, int idade, String tipo) {}
-
     public static void main(String[] args) {
-        System.out.println("=== if / else if / else ===");
 
-        int idade = 17;
-        if (idade < 12) {
-            System.out.println("meia-entrada: crianca");
-        } else if (idade <= 18) {
-            System.out.println("meia-entrada: adolescente");
-        } else if (idade >= 60) {
-            System.out.println("meia-entrada: idoso");
+        // -----------------------------------------------------------------
+        // Variavel base do exemplo. Todos os testes usam ela.
+        // -----------------------------------------------------------------
+        String freeDay = "Childrens Day";
+
+        System.out.println("==================================================");
+        System.out.println(" EXEMPLO 07 - COMANDOS CONDICIONAIS");
+        System.out.println("==================================================");
+        System.out.println("freeDay = \"" + freeDay + "\"\n");
+
+        // -----------------------------------------------------------------
+        // [1] if / else if / else (com `==` em Strings - didatico)
+        // -----------------------------------------------------------------
+        // Observacao: `freeDay == "Childrens Day"` compara REFERENCIA.
+        // Funciona aqui porque "Childrens Day" e um literal internado
+        // (string pool) e `freeDay` tambem aponta para o mesmo literal.
+        // Em codigo real use: freeDay.equals("Childrens Day").
+        System.out.println("[1] if / else if / else:");
+
+        if (freeDay == "Childrens Day") {
+
+            println("yay");
+        } else if (freeDay == "Womans Day"){
+
+            println("lets goo");
+
+
         } else {
-            System.out.println("ingresso inteiro");
+
+            println("I gotta work man");
         }
 
-        // if classico tambem aceita blocos aninhados.
-        int notas = 2;
-        boolean sozinho = true;
-        if (notas > 0) {
-            System.out.println("tem " + notas + " notas");
-            if (sozinho) {
-                System.out.println("e esta sozinho: vale a promocao individual");
+        // -----------------------------------------------------------------
+        // [2] switch com setas (Java 14+) - versao STATEMENT
+        //     Nao devolve valor; apenas executa um efeito (println).
+        // -----------------------------------------------------------------
+        System.out.println("\n[2] switch (statement, com setas):");
+
+        switch (freeDay) {
+            case "Childrens Day" -> println("yay");
+            case "Womans Day" -> println("lets goo");
+            default -> println("I gotta work man");
+        }
+
+        // -----------------------------------------------------------------
+        // [3] switch EXPRESSION - devolve valor para `whatToDo`
+        //     Cada `case` com bloco `{ ... }` precisa de `yield` para
+        //     devolver o valor daquele ramo.
+        // -----------------------------------------------------------------
+        System.out.println("\n[3] switch expression (com yield):");
+
+        String whatToDo = switch (freeDay) {
+            case "Childrens Day" -> {
+                yield "chill";
             }
-        }
-
-        System.out.println();
-        System.out.println("=== OPERADOR TERNARIO (condicao ? a : b) ===");
-
-        // Forma compacta de retornar um de dois valores.
-        double precoBase = 30.0;
-        double preco = (idade < 12) ? precoBase / 2 : precoBase;
-        System.out.println("preco para idade " + idade + " = R$" + preco);
-
-        // Ternario pode ser aninhado, mas deve ser usado com cuidado.
-        String faixa = idade < 2 ? "bebe"
-                     : idade < 13 ? "crianca"
-                     : idade < 20 ? "adolescente"
-                     : "adulto";
-        System.out.println("faixa etaria: " + faixa);
-
-        System.out.println();
-        System.out.println("=== switch TRADICIONAL (com case com virgula) ===");
-
-        String dia = "ter";
-        switch (dia) {
-            case "seg", "ter", "qua", "qui", "sex" -> System.out.println("dia util");
-            case "sab", "dom" -> System.out.println("fim de semana");
-            default -> System.out.println("dia invalido");
-        }
-
-        // Forma antiga com :, break e fall-through (sem break escorrega).
-        String mes = "dez";
-        switch (mes) {
-            case "jan": case "mar": case "mai": case "jul":
-            case "ago": case "out": case "dez":
-                System.out.println(mes + " tem 31 dias");
-                break;
-            case "fev":
-                System.out.println(mes + " tem 28/29 dias");
-                break;
-            default:
-                System.out.println(mes + " tem 30 dias");
-        }
-
-        System.out.println();
-        System.out.println("=== switch EXPRESSION (produz valor) ===");
-
-        int assento = 2;
-        String zona = switch (assento) {
-            case 1, 2 -> "VIP";
-            case 3, 4, 5 -> "plateia";
-            default -> "arquibancada";
-        };
-        System.out.println("assento " + assento + " fica na zona: " + zona);
-
-        // Com yield para logica mais elaborada dentro do caso.
-        int tempoLivro = 40; // minutos
-        String duracao = switch (tempoLivro) {
-            case 30 -> { yield "curto"; }
+            case "Womans Day" -> {
+                yield "kiss wife";
+            }
             default -> {
-                if (tempoLivro > 60) yield "longo";
-                else yield "medio";
+                yield "cry";
             }
         };
-        System.out.println("peça de " + tempoLivro + "min: " + duracao);
 
-        System.out.println();
-        System.out.println("=== PATTERN MATCHING: instanceof ===");
+        System.out.println("whatToDo = \"" + whatToDo + "\"");
 
-        Object item = "Camerote";
-        // instanceof com padrao (Java 16+): declara 's' dentro do if.
-        if (item instanceof String s) {
-            System.out.println("item e String em minusculas: " + s.toLowerCase());
+        // -----------------------------------------------------------------
+        // [4] Operador ternario: condicao ? valorV : valorF
+        //     Equivale a um if/else que devolve String.
+        // -----------------------------------------------------------------
+        System.out.println("\n[4] operador ternario:");
+
+        println(freeDay == "Childrens Day" ? "yay" : "nay");
+
+        // -----------------------------------------------------------------
+        // [5] Pattern matching com `instanceof`
+        //     Aqui `whatToDo` e declarado como String, entao o teste
+        //     sempre sera verdadeiro. Serve para mostrar a sintaxe.
+        // -----------------------------------------------------------------
+        System.out.println("\n[5] instanceof pattern matching:");
+
+        if (whatToDo instanceof String) {
+            println("whatToDo is a String");
         } else {
-            System.out.println("item nao e String");
+            println("whatToDo is not a String");
         }
 
-        Object numero = 7;
-        if (numero instanceof Integer n) {
-            System.out.println("numero inteiro: " + (n * 3));
+        // -----------------------------------------------------------------
+        // [6] Pattern matching em `switch` (Java 21)
+        //     Cada `case Tipo var ->` testa o tipo e vincula a variavel
+        //     `var` ja tipada. Note o cast para `(Object)` para que o
+        //     compilador aceite testar outros tipos.
+        // -----------------------------------------------------------------
+        System.out.println("\n[6] switch pattern matching (Java 21):");
+
+        switch ((Object)whatToDo) {
+
+            case String s -> {
+                println("switch string");
+            }
+            case Integer i -> {
+                println("switch is a int");
+            }
+            default -> println("is something else");
         }
 
-        System.out.println();
-        System.out.println("=== PATTERN MATCHING: switch com padroes (Java 21) ===");
-
-        System.out.println("formatar(\"olá\") = " + formatar("olá"));
-        System.out.println("formatar(42) = " + formatar(42));
-        System.out.println("formatar(9.5) = " + formatar(9.5));
-        System.out.println("formatar(null) = " + formatar(null));
-
-        System.out.println();
-        System.out.println("=== API de testes (Pedido) ===");
-
-        // Resumo da bilheteria usando os recursos vistos.
-        String resumo = tiqueTaquia(new Pedido(30.0, 65, "pessoa"));
-        System.out.println(resumo);
-    }
-
-    // switch com pattern matching: domina o tipo de cada caso.
-    static String formatar(Object o) {
-        return switch (o) {
-            case String s -> "String: '" + s + "'";
-            case Integer i -> "Inteiro: " + i;
-            case Double d -> "Double: " + d;
-            case null -> "nulo";
-            default -> "outro: " + o.getClass().getSimpleName();
-        };
-    }
-
-    // if/else combinado com switch para gerar o resumo da venda.
-    static String tiqueTaquia(Pedido pedido) {
-        double bruto = pedido.valor();
-        double liquido = bruto;
-        String motivo = "";
-
-        boolean age = pedido.idade() < 12 || pedido.idade() >= 60;
-        boolean temCortesia = pedido.tipo().equals("cortesia");
-
-        if (temCortesia) {
-            motivo = "cortesia (100%)";
-            liquido = 0;
-        } else if (age) {
-            motivo = "meia-entrada (50%)";
-            liquido = bruto / 2;
-        } else {
-            motivo = "inteira";
-        }
-
-        String atracoes = switch (pedido.tipo()) {
-            case "pessoa" -> "1 sessao";
-            case "grupo" -> "2 sessoes";
-            default -> "sob consulta";
-        };
-
-        return "Pedido: R$" + bruto + " -> " + motif(motivo, liquido) + " | shows: " + atracoes + " | pagamentos: "
-                + (liquido == 0 ? "gratis" : "R$" + liquido);
-    }
-
-    static String motif(String motivo, double valor) {
-        return valor == 0 ? "gratis" : motivo + " (" + valor + ")";
+        System.out.println("\n==================================================");
+        System.out.println(" FIM DO EXEMPLO 07");
+        System.out.println("==================================================");
     }
 }
