@@ -23,10 +23,10 @@
 - [x] Literais especiais (true, false, null)
 
 ## 4. Variáveis
-- [ ] **Nomes**: case sensitive, caracteres permitidos (letras, dígitos, `_`, `$`), convenções
-- [ ] **Vinculação**: estática (tipagem forte e estática)
-- [ ] **Tempo de vida**: local (stack), instância/objeto (heap), estática (class load)
-- [ ] **Escopo**: bloco, método, classe, pacote
+- [x] **Nomes**: case sensitive, caracteres permitidos (letras, dígitos, `_`, `$`), convenções
+- [x] **Vinculação**: estática (tipagem forte e estática)
+- [x] **Tempo de vida**: local (stack), instância/objeto (heap), estática (class load)
+- [x] **Escopo**: bloco, método, classe, pacote
 
 ## 5. Expressões
 - [ ] **Associatividade** (esquerda/direita)
