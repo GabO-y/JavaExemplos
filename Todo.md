@@ -18,9 +18,9 @@
 - [x] Referências nulas (null)
 
 ## 3. Palavras-Chave e Reservadas
-- [ ] Listar palavras-chave (abstract, final, static, synchronized, volatile, transient, etc.)
-- [ ] Palavras reservadas mas não usadas (goto, const)
-- [ ] Literais especiais (true, false, null)
+- [x] Listar palavras-chave (abstract, final, static, synchronized, volatile, transient, etc.)
+- [x] Palavras reservadas mas não usadas (goto, const)
+- [x] Literais especiais (true, false, null)
 
 ## 4. Variáveis
 - [ ] **Nomes**: case sensitive, caracteres permitidos (letras, dígitos, `_`, `$`), convenções
