@@ -1,21 +1,21 @@
 # Checklist de Análise da Linguagem Java
 
 ## 1. Tipos de Dados
-- [ ] **Tipos primitivos** (byte, short, int, long, float, double, char, boolean)
-  - [ ] Tamanho em bits/bytes de cada tipo
-  - [ ] Representação (ponto fixo vs. ponto flutuante)
-  - [ ] Valores padrão
-- [ ] **Tipos compostos/referência** (classes, interfaces, arrays, enums, records)
-  - [ ] Formato de implementação (heap, vetores estáticos vs. dinâmicos)
-  - [ ] Tipos permitidos para índices de arrays
-- [ ] **Tipos básicos padrão da linguagem** (String, wrappers, Object, etc.)
-- [ ] **Conversões** (implícitas, explícitas/casting, boxing/unboxing)
+- [x] **Tipos primitivos** (byte, short, int, long, float, double, char, boolean)
+  - [x] Tamanho em bits/bytes de cada tipo
+  - [x] Representação (ponto fixo vs. ponto flutuante)
+  - [x] Valores padrão
+- [x] **Tipos compostos/referência** (classes, interfaces, arrays, enums, records)
+  - [x] Formato de implementação (heap, vetores estáticos vs. dinâmicos)
+  - [x] Tipos permitidos para índices de arrays
+- [x] **Tipos básicos padrão da linguagem** (String, wrappers, Object, etc.)
+- [x] **Conversões** (implícitas, explícitas/casting, boxing/unboxing)
 
 ## 2. Ponteiros e Referências
-- [ ] Java usa referências (não ponteiros explícitos)
-- [ ] Gerenciamento de memória (Garbage Collector)
-- [ ] Sem aritmética de ponteiros
-- [ ] Referências nulas (null)
+- [x] Java usa referências (não ponteiros explícitos)
+- [x] Gerenciamento de memória (Garbage Collector)
+- [x] Sem aritmética de ponteiros
+- [x] Referências nulas (null)
 
 ## 3. Palavras-Chave e Reservadas
 - [ ] Listar palavras-chave (abstract, final, static, synchronized, volatile, transient, etc.)
