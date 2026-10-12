@@ -29,9 +29,9 @@
 - [x] **Escopo**: bloco, método, classe, pacote
 
 ## 5. Expressões
-- [ ] **Associatividade** (esquerda/direita)
-- [ ] **Precedência** de operadores
-- [ ] **Sobrecarga de operadores** (Java não suporta sobrecarga de operadores definida pelo usuário, exceto `+` para String)
+- [x] **Associatividade** (esquerda/direita)
+- [x] **Precedência** de operadores
+- [x] **Sobrecarga de operadores** (Java não suporta sobrecarga de operadores definida pelo usuário, exceto `+` para String)
 
 ## 6. Estruturas de Controle e Desvios de Fluxo
 - [ ] `break`, `continue`, `return`

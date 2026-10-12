@@ -1,12 +1,6 @@
 /**
  * Exemplo 04 - Variaveis
  *
- * Cobre (Todo.md #4):
- * - [x] Nomes: case sensitive, caracteres permitidos (letras, digitos, _, $), convencoes
- * - [x] Vinculacao: estatica (tipagem forte e estatica)
- * - [x] Tempo de vida: local (stack), instancia/objeto (heap), estatica (class load)
- * - [x] Escopo: bloco, metodo, classe, pacote
- *
  * Exemplo aplicado: sistema de cafeteria que explora nomes, tipos, tempo de
  * vida e escopo de variaveis.
  */
