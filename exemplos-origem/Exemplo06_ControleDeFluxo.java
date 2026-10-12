@@ -5,6 +5,7 @@
  * - [ ] break, continue, return
  * - [ ] break/continue rotulados
  * - [ ] yield (switch expressions)
+ *   tags: mind break
  */
 public class Exemplo06_ControleDeFluxo {
     // TODO: implementar exemplo auto-verificavel
