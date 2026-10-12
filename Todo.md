@@ -34,21 +34,21 @@
 - [x] **Sobrecarga de operadores** (Java não suporta sobrecarga de operadores definida pelo usuário, exceto `+` para String)
 
 ## 6. Estruturas de Controle e Desvios de Fluxo
-- [ ] `break`, `continue`, `return`
-- [ ] `break`/`continue` rotulados
-- [ ] `yield` (switch expressions)
+- [x] `break`, `continue`, `return`
+- [x] `break`/`continue` rotulados
+- [x] `yield` (switch expressions)
 
 ## 7. Comandos Condicionais
-- [ ] `if` / `else if` / `else`
-- [ ] `switch` (tradicional e expressão)
-- [ ] Operador ternário
-- [ ] Pattern matching (instanceof, switch)
+- [x] `if` / `else if` / `else`
+- [x] `switch` (tradicional e expressão)
+- [x] Operador ternário
+- [x] Pattern matching (instanceof, switch)
 
 ## 8. Comandos de Repetição
-- [ ] `for` tradicional
-- [ ] `for-each` (enhanced for)
-- [ ] `while`
-- [ ] `do-while`
+- [x] `for` tradicional
+- [x] `for-each` (enhanced for)
+- [x] `while`
+- [x] `do-while`
 
 ## 9. Subprogramas
 - [ ] **Declaração e chamada** de métodos

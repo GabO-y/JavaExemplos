@@ -48,6 +48,10 @@ import static java.lang.IO.println;
  *    - while(true)  /  for(;;)  => loop infinito intencional (use break).
  *    - Se esquecer de atualizar a variavel de controle, o laco nunca termina.
  */
+
+import java.util.List;
+import java.util.Map;
+
 public class Exemplo08_Repeticao {
 
     public static void main(String[] args) {

@@ -37,6 +37,9 @@
  *    - Em corpos de uma linha (case X -> "valor";) não precisa de yield.
  *    - Diferente de Thread.yield(), que é outra coisa (dica ao escalonador).
  */
+
+import java.util.List;
+
 public class Exemplo06_ControleDeFluxo {
 
     public static void main(String[] args) {

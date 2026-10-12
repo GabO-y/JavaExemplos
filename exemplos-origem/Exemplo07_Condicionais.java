@@ -40,6 +40,7 @@ import static java.lang.IO.println;
  *    - Usado DENTRO de blocos `{ ... }` de uma switch expression para
  *      devolver o valor daquele case.
  */
+
 public class Exemplo07_Condicionais {
 
     public static void main(String[] args) {
