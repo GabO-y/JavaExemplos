@@ -61,13 +61,13 @@
 - [x] **Métodos delegados** (via composição, não nativo)
 
 ## 10. Concorrência
-- [ ] **Threads** (Thread, Runnable)
-- [ ] **Executors / Thread Pools**
-- [ ] **Sincronização**: `synchronized`, `Lock`, `Semaphore`, `Atomic*`
-- [ ] **CompletableFuture** (programação assíncrona)
-- [ ] **Virtual Threads** (Java 21+)
-- [ ] **Coleções concorrentes** (ConcurrentHashMap, etc.)
-- [ ] **Memória compartilhada** e `volatile`
+- [x] **Threads** (Thread, Runnable)
+- [x] **Executors / Thread Pools**
+- [x] **Sincronização**: `synchronized`, `Lock`, `Semaphore`, `Atomic*`
+- [x] **CompletableFuture** (programação assíncrona)
+- [x] **Virtual Threads** (Java 21+)
+- [x] **Coleções concorrentes** (ConcurrentHashMap, etc.)
+- [x] **Memória compartilhada** e `volatile`
 
 ## 11. Tratamento de Exceções
 - [ ] **Checked exceptions** (verificadas em compilação)
