@@ -80,10 +80,10 @@
 - [x] **Multi-catch**
 
 ## 12. Tratamento de Eventos
-- [ ] **Modelo de eventos** (Listener/Observer)
-- [ ] **Eventos de GUI** (AWT/Swing/JavaFX)
-- [ ] **Interfaces funcionais** para callbacks
-- [ ] **Eventos em programação reativa** (Flow API, Reactive Streams)
+- [x] **Modelo de eventos** (Listener/Observer)
+- [x] **Eventos de GUI** (AWT/Swing/JavaFX)
+- [x] **Interfaces funcionais** para callbacks
+- [x] **Eventos em programação reativa** (Flow API, Reactive Streams)
 
 ## 13. Paradigmas e Aspectos Adicionais
 - [ ] **Paradigma orientado a objetos** (classes, herança, polimorfismo, encapsulamento)

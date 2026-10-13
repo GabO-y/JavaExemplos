@@ -1,16 +1,6 @@
 /**
  * Exemplo 11 - Tratamento de Excecoes
- *
- * Cobre (Todo.md #11):
- * - [x] Checked exceptions (verificadas em compilacao)
- * - [x] Unchecked exceptions (RuntimeException e Error)
- * - [x] Erros trataveis vs. intrataveis (Error vs. Exception)
- * - [x] Criacao de excecoes personalizadas
- * - [x] Blocos try, catch, finally
- * - [x] try-with-resources
- * - [x] Delegacao (throws)
- * - [x] Multi-catch
- *
+ * 
  * Exemplo aplicado: um sistema de saque bancario que precisa validar os dados
  * e tratar os erros que podem acontecer durante o processo.
  */
