@@ -86,9 +86,9 @@
 - [x] **Eventos em programação reativa** (Flow API, Reactive Streams)
 
 ## 13. Paradigmas e Aspectos Adicionais
-- [ ] **Paradigma orientado a objetos** (classes, herança, polimorfismo, encapsulamento)
-- [ ] **Paradigma funcional** (lambdas, Streams, Optional)
-- [ ] **Metaprogramação** (Reflection, Annotations, APT)
-- [ ] **Programação paralela** (Fork/Join, Parallel Streams)
-- [ ] **Programação distribuída** (RMI, sockets, bibliotecas externas)
-- [ ] **Modularização** (JPMS - Java Platform Module System)
+- [x] **Paradigma orientado a objetos** (classes, herança, polimorfismo, encapsulamento)
+- [x] **Paradigma funcional** (lambdas, Streams, Optional)
+- [x] **Metaprogramação** (Reflection, Annotations, APT)
+- [x] **Programação paralela** (Fork/Join, Parallel Streams)
+- [x] **Programação distribuída** (RMI, sockets, bibliotecas externas)
+- [x] **Modularização** (JPMS - Java Platform Module System)
