@@ -70,14 +70,14 @@
 - [x] **Memória compartilhada** e `volatile`
 
 ## 11. Tratamento de Exceções
-- [ ] **Checked exceptions** (verificadas em compilação)
-- [ ] **Unchecked exceptions** (RuntimeException e Error)
-- [ ] **Erros tratáveis vs. intratáveis** (Error vs. Exception)
-- [ ] **Criação de exceções personalizadas**
-- [ ] **Blocos** `try`, `catch`, `finally`
-- [ ] **try-with-resources**
-- [ ] **Delegação** (`throws`)
-- [ ] **Multi-catch**
+- [x] **Checked exceptions** (verificadas em compilação)
+- [x] **Unchecked exceptions** (RuntimeException e Error)
+- [x] **Erros tratáveis vs. intratáveis** (Error vs. Exception)
+- [x] **Criação de exceções personalizadas**
+- [x] **Blocos** `try`, `catch`, `finally`
+- [x] **try-with-resources**
+- [x] **Delegação** (`throws`)
+- [x] **Multi-catch**
 
 ## 12. Tratamento de Eventos
 - [ ] **Modelo de eventos** (Listener/Observer)
