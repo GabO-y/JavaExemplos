@@ -1,5 +1,3 @@
-import static java.lang.IO.println;
-
 /**
  * Exemplo 07 - Comandos Condicionais
  *
@@ -66,15 +64,15 @@ public class Exemplo07_Condicionais {
 
         if (freeDay == "Childrens Day") {
 
-            println("yay");
+            System.out.println("yay");
         } else if (freeDay == "Womans Day"){
 
-            println("lets goo");
+            System.out.println("lets goo");
 
 
         } else {
 
-            println("I gotta work man");
+            System.out.println("I gotta work man");
         }
 
         // -----------------------------------------------------------------
@@ -84,9 +82,9 @@ public class Exemplo07_Condicionais {
         System.out.println("\n[2] switch (statement, com setas):");
 
         switch (freeDay) {
-            case "Childrens Day" -> println("yay");
-            case "Womans Day" -> println("lets goo");
-            default -> println("I gotta work man");
+            case "Childrens Day" -> System.out.println("yay");
+            case "Womans Day" -> System.out.println("lets goo");
+            default -> System.out.println("I gotta work man");
         }
 
         // -----------------------------------------------------------------
@@ -116,7 +114,7 @@ public class Exemplo07_Condicionais {
         // -----------------------------------------------------------------
         System.out.println("\n[4] operador ternario:");
 
-        println(freeDay == "Childrens Day" ? "yay" : "nay");
+        System.out.println(freeDay == "Childrens Day" ? "yay" : "nay");
 
         // -----------------------------------------------------------------
         // [5] Pattern matching com `instanceof`
@@ -126,9 +124,9 @@ public class Exemplo07_Condicionais {
         System.out.println("\n[5] instanceof pattern matching:");
 
         if (whatToDo instanceof String) {
-            println("whatToDo is a String");
+            System.out.println("whatToDo is a String");
         } else {
-            println("whatToDo is not a String");
+            System.out.println("whatToDo is not a String");
         }
 
         // -----------------------------------------------------------------
@@ -142,12 +140,12 @@ public class Exemplo07_Condicionais {
         switch ((Object)whatToDo) {
 
             case String s -> {
-                println("switch string");
+                System.out.println("switch string");
             }
             case Integer i -> {
-                println("switch is a int");
+                System.out.println("switch is a int");
             }
-            default -> println("is something else");
+            default -> System.out.println("is something else");
         }
 
         System.out.println("\n==================================================");

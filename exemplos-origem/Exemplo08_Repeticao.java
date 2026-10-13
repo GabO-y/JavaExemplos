@@ -1,5 +1,3 @@
-import static java.lang.IO.println;
-
 /**
  * Exemplo 08 - Comandos de Repeticao
  *
@@ -142,7 +140,7 @@ public class Exemplo08_Repeticao {
 
         // while: condicao falsa => corpo NUNCA roda
         while (condFalsa > 0) {
-            println("  while  -> executou (nao deveria!)");
+            System.out.println("  while  -> executou (nao deveria!)");
         }
         System.out.println("  while   -> corpo NAO executou (pre-teste)");
 
