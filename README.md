@@ -5,7 +5,7 @@ Repositório da disciplina **Compiladores** (semestre 2026.2) para a atividade d
 
 ## Sobre o projeto
 
-Projeto de um transpilador cuja **linguagem de origem é Java**. Este repositório
+**linguagem de origem é Java**. Este repositório
 disponibiliza os códigos-fonte de exemplo que documentam as características da
 linguagem, organizados por tópico.
 
@@ -16,34 +16,10 @@ linguagem, organizados por tópico.
 - Bruno Eduardo
 - Gabriel Oliveira
 
-## Como compilar e executar
+## Organização
 
-**Requisito:** JDK 21 (compilador `javac`). Verifique a instalação com
-`java -version` e `javac -version`.
+- `exemplos-origem/` — códigos-fonte de exemplo em Java (um arquivo por tópico);
+- `bin/` — classes compiladas (gerada pelo `javac`).
 
-### Compilar todos os exemplos
-
-```bash
-javac -d bin exemplos-origem/*.java
-```
-
-Os arquivos `*.class` gerados ficam na pasta `bin/`.
-
-### Executar um exemplo
-
-```bash
-java -cp bin NomeDoExemplo
-```
-
-Exemplo:
-
-```bash
-java -cp bin Exemplo01_TiposDeDados
-```
-
-Cada exemplo imprime os resultados dos tópicos com `System.out.println`.
-
-### Organização
-
-- `exemplos-origem/` — códigos-fonte de exemplo (um arquivo por tópico);
-- `bin/` — classes compiladas.
+As instruções de como compilar e executar os exemplos, incluindo a instalação
+do compilador, estão em [exemplos-origem/README.md](exemplos-origem/README.md).
