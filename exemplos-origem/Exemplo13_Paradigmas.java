@@ -3,9 +3,12 @@
  *
  * Cobre (Todo.md #13):
  * - [ ] Paradigma orientado a objetos (classes, heranca, polimorfismo, encapsulamento)
- * - [ ] Paradigma funcional (lambdas, Streams, Optional)
- * - [ ] Metaprogramacao (Reflection, Annotations, APT)
- * - [ ] Programacao paralela (Fork/Join, Parallel Streams)
+ * - [ ] Paradigma funcional (lambdas, funcoes puras, imutabilidade, Streams, Optional)
+ * - [ ] Paradigma logico / declarativo (fatos, regras, unificacao, backtracking)
+ * - [ ] Paradigma generico (Generics, bounds, wildcards, type erasure)
+ * - [ ] Paradigma reativo (Flow API, backpressure)
+ * - [ ] Paradigma concorrente / paralelo (Fork/Join, Parallel Streams)
+ * - [ ] Metaprogramacao (Reflection, Annotations, APT) - deep dive no Exemplo 20
  * - [ ] Programacao distribuida (RMI, sockets, bibliotecas externas)
  * - [ ] Modularizacao (JPMS - Java Platform Module System)
  */
