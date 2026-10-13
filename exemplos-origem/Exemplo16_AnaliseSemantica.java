@@ -1,11 +1,15 @@
 /**
- * Exemplo 16 - Analise Semantica e Tabela de Simbolos
+ * Exemplo 16 - Analise Semantica e Deteccao de Erros
  *
  * Cobre (fase de compilacao):
  * - [x] Papel da analise semantica (verificacoes apos o parser)
  * - [x] Tabela de simbolos (nome -> tipo), com escopos aninhados
  * - [x] Regra de ESCOPO e resolucao de nomes
  * - [x] Erros semanticos: variavel nao declarada, redeclaracao, tipo incompativel
+ * - [x] Erros por fase: lexico, sintatico e semantico
+ * - [x] Hierarquia de excecoes do compilador (base comum)
+ * - [x] Diagnostico com fase + mensagem e recuperacao (varios erros)
+ * - [x] Erro de compilacao x erro de execucao
  *
  * ------------------------------------------------------------------
  * NOTAS:
@@ -14,22 +18,51 @@
  * se um nome foi declarado antes do uso, se nao ha nomes duplicados no
  * mesmo escopo e se os tipos combinam. O compilador caminha pela AST
  * mantendo uma pilha de escopos (tabela de simbolos).
+ *
+ * Este exemplo tambem demonstra o TRATAMENTO DE ERROS de compilacao
+ * (antes no Exemplo 21): um compilador emite DIAGNOSTICOS. Erros
+ * lexico/sintatico/semantico impedem a geracao de codigo; erros de
+ * execucao (RuntimeException) so aparecem quando o programa roda.
  */
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Exemplo16_AnaliseSemantica {
 
-    record Simbolo(String nome, String tipo) {}
+    // -----------------------------------------------------------------
+    // Hierarquia de erros de compilacao (base comum + fases).
+    // -----------------------------------------------------------------
+    static abstract class ErroCompilacao extends RuntimeException {
+        final String fase;
 
-    static class ErroSemantico extends RuntimeException {
-        ErroSemantico(String msg) {
+        ErroCompilacao(String fase, String msg) {
             super(msg);
+            this.fase = fase;
+        }
+
+        String diagnostico() {
+            return "[" + fase + "] " + getMessage();
         }
     }
+
+    static class ErroLexico extends ErroCompilacao {
+        ErroLexico(String msg) { super("LEXICO", msg); }
+    }
+
+    static class ErroSintatico extends ErroCompilacao {
+        ErroSintatico(String msg) { super("SINTATICO", msg); }
+    }
+
+    static class ErroSemantico extends ErroCompilacao {
+        ErroSemantico(String msg) { super("SEMANTICO", msg); }
+    }
+
+    record Simbolo(String nome, String tipo) {}
 
     // -----------------------------------------------------------------
     // Tabela de simbolos com pilha de escopos.
@@ -95,10 +128,63 @@ public class Exemplo16_AnaliseSemantica {
         System.out.println("  ok: " + nome + " (" + tipoVar + ") = valor " + tipoValor);
     }
 
+    // -----------------------------------------------------------------
+    // Mini-compilador: cada fase lanca o erro correspondente.
+    // -----------------------------------------------------------------
+    static void faseLexica(String fonte) {
+        for (char c : fonte.toCharArray()) {
+            if (c == '$') {
+                throw new ErroLexico("caractere invalido '$'");
+            }
+        }
+    }
+
+    static void faseSintatica(String fonte) {
+        if (!fonte.trim().endsWith(";")) {
+            throw new ErroSintatico("faltando ';' no fim da sentenca");
+        }
+        if (conta(fonte, '(') != conta(fonte, ')')) {
+            throw new ErroSintatico("parenteses desbalanceados");
+        }
+    }
+
+    static void faseSemantica(String fonte) {
+        if (fonte.contains("int x = \"")) {
+            throw new ErroSemantico("tipo incompativel: int recebendo texto");
+        }
+    }
+
+    static int conta(String s, char c) {
+        int n = 0;
+        for (char ch : s.toCharArray()) {
+            if (ch == c) {
+                n++;
+            }
+        }
+        return n;
+    }
+
+    // Compila reportando TODOS os erros (recuperacao simples).
+    static List<String> compilar(String fonte) {
+        List<String> diagnosticos = new ArrayList<>();
+        List<Runnable> fases = List.of(
+                () -> faseLexica(fonte),
+                () -> faseSintatica(fonte),
+                () -> faseSemantica(fonte));
+        for (Runnable fase : fases) {
+            try {
+                fase.run();
+            } catch (ErroCompilacao e) {
+                diagnosticos.add(e.diagnostico());
+            }
+        }
+        return diagnosticos;
+    }
+
     public static void main(String[] args) {
 
         System.out.println("==================================================");
-        System.out.println(" EXEMPLO 16 - ANALISE SEMANTICA E TABELA DE SIMBOLOS");
+        System.out.println(" EXEMPLO 16 - ANALISE SEMANTICA E DETECCAO DE ERROS");
         System.out.println("==================================================\n");
 
         // -----------------------------------------------------------------
@@ -133,7 +219,7 @@ public class Exemplo16_AnaliseSemantica {
         try {
             t.tipoDe("peso");
         } catch (ErroSemantico e) {
-            System.out.println("  ErroSemantico -> " + e.getMessage());
+            System.out.println("  " + e.diagnostico());
         }
 
         System.out.println();
@@ -145,7 +231,7 @@ public class Exemplo16_AnaliseSemantica {
         try {
             t.declarar("idade", "int");
         } catch (ErroSemantico e) {
-            System.out.println("  ErroSemantico -> " + e.getMessage());
+            System.out.println("  " + e.diagnostico());
         }
 
         System.out.println();
@@ -157,8 +243,57 @@ public class Exemplo16_AnaliseSemantica {
         try {
             atribuir(t, "idade", "String");
         } catch (ErroSemantico e) {
-            System.out.println("  ErroSemantico -> " + e.getMessage());
+            System.out.println("  " + e.diagnostico());
         }
+
+        System.out.println();
+
+        // -----------------------------------------------------------------
+        // [6] Erros por fase (lexico, sintatico, semantico).
+        // -----------------------------------------------------------------
+        System.out.println("[6] Erro por fase:");
+        String[] fontes = {
+                "int x = 3;",              // valido
+                "int x = 3 $",             // erro lexico
+                "int x = (3 + 4",          // erro sintatico
+                "int x = \"texto\";"       // erro semantico
+        };
+        for (String f : fontes) {
+            try {
+                faseLexica(f);
+                faseSintatica(f);
+                faseSemantica(f);
+                System.out.println("  OK        : " + f);
+            } catch (ErroCompilacao e) {
+                System.out.println("  " + e.diagnostico() + "  <- " + f);
+            }
+        }
+
+        System.out.println();
+
+        // -----------------------------------------------------------------
+        // [7] Recuperacao: reportar varios erros de uma vez.
+        // -----------------------------------------------------------------
+        System.out.println("[7] Recuperacao de erros (varios diagnosticos):");
+        String ruim = "int x = \"oi\" $ y;";
+        for (String d : compilar(ruim)) {
+            System.out.println("  " + d);
+        }
+
+        System.out.println();
+
+        // -----------------------------------------------------------------
+        // [8] Erro de compilacao x erro de execucao.
+        // -----------------------------------------------------------------
+        System.out.println("[8] Compilacao x execucao:");
+        System.out.println("  'int x = 1/0;' COMPILA, mas falha na EXECUCAO:");
+        try {
+            int x = 1 / 0; // erro de execucao (RuntimeException)
+            System.out.println("  " + x);
+        } catch (ArithmeticException e) {
+            System.out.println("  RuntimeException em execucao -> " + e.getMessage());
+        }
+        System.out.println("  Ja 'int x = ;' nem compila (erro de SINTAXE).");
 
         System.out.println("\n==================================================");
         System.out.println(" FIM DO EXEMPLO 16");
