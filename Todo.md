@@ -51,14 +51,14 @@
 - [x] `do-while`
 
 ## 9. Subprogramas
-- [ ] **Declaração e chamada** de métodos
-- [ ] **Modificadores** (public, private, protected, static, final, abstract)
-- [ ] **Passagem de parâmetros**: apenas por valor (objetos passam referência por valor)
-- [ ] **Sobrecarga** e **sobrescrita** de métodos
-- [ ] **Co-rotinas**: não suportadas nativamente (alternativas com threads/virtual threads)
-- [ ] **Funções lambda** (a partir do Java 8)
-- [ ] **Programação genérica** (Generics)
-- [ ] **Métodos delegados** (via composição, não nativo)
+- [x] **Declaração e chamada** de métodos
+- [x] **Modificadores** (public, private, protected, static, final, abstract)
+- [x] **Passagem de parâmetros**: apenas por valor (objetos passam referência por valor)
+- [x] **Sobrecarga** e **sobrescrita** de métodos
+- [x] **Co-rotinas**: não suportadas nativamente (alternativas com threads/virtual threads)
+- [x] **Funções lambda** (a partir do Java 8)
+- [x] **Programação genérica** (Generics)
+- [x] **Métodos delegados** (via composição, não nativo)
 
 ## 10. Concorrência
 - [ ] **Threads** (Thread, Runnable)
